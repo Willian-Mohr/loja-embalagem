@@ -18,19 +18,25 @@ public class EmpacotarPedidoUseCaseImpl implements EmpacotarPedidoUseCase {
 
     @Override
     public List<ResultadoEmpacotamento> executar(Pedido pedido) {
-        List<Map<String, List<String>>> resultado = caixaSelecaoServicePort.empacotarPedido(pedido);
+        List<Map<String, List<String>>> resultadoBruto = caixaSelecaoServicePort.empacotarPedido(pedido);
+        return transformarResultados(resultadoBruto);
+    }
 
-        return resultado.stream()
+    private List<ResultadoEmpacotamento> transformarResultados(List<Map<String, List<String>>> resultadoBruto) {
+        return resultadoBruto.stream()
                 .flatMap(map -> map.entrySet().stream()
-                        .map(entry -> {
-                            String caixaId = entry.getKey();
-                            List<String> produtos = entry.getValue();
-                            if (caixaId == null) {
-                                return ResultadoEmpacotamento.semCaixa(produtos, "Produto não cabe em nenhuma caixa disponível.");
-                            } else {
-                                return ResultadoEmpacotamento.comCaixa(caixaId, produtos);
-                            }
-                        }))
+                        .map(this::mapearResultado))
                 .collect(Collectors.toList());
+    }
+
+    private ResultadoEmpacotamento mapearResultado(Map.Entry<String, List<String>> entry) {
+        String caixaId = entry.getKey();
+        List<String> produtos = entry.getValue();
+
+        if (caixaId == null) {
+            return ResultadoEmpacotamento.semCaixa(produtos, "Produto não cabe em nenhuma caixa disponível.");
+        }
+
+        return ResultadoEmpacotamento.comCaixa(caixaId, produtos);
     }
 }
