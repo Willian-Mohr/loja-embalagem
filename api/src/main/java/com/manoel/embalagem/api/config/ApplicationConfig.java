@@ -1,6 +1,7 @@
 package com.manoel.embalagem.api.config;
 
 import com.manoel.embalagem.application.usecase.EmpacotarPedidoUseCase;
+import com.manoel.embalagem.application.usecase.EmpacotarPedidoUseCaseImpl;
 import com.manoel.embalagem.domain.port.CaixaSelecaoServicePort;
 import com.manoel.embalagem.infrastructure.service.DefaultCaixaSelecaoService;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +17,6 @@ public class ApplicationConfig {
 
     @Bean
     public EmpacotarPedidoUseCase empacotarPedidoUseCase(CaixaSelecaoServicePort service) {
-        return new EmpacotarPedidoUseCase(service);
+        return new EmpacotarPedidoUseCaseImpl(service);
     }
 }
