@@ -24,6 +24,19 @@
             <artifactId>application</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <!-- Spring Boot Core para Configurações -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- Processador de anotações para permitir geração de metadata -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
 </project>
