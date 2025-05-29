@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableConfigurationProperties(CaixasProperties.class)
+@EnableConfigurationProperties({CaixasProperties.class, SwaggerProperties.class})
 public class ApplicationConfig {
 
     @Bean
@@ -21,4 +21,5 @@ public class ApplicationConfig {
     public EmpacotarPedidoUseCase empacotarPedidoUseCase(CaixaSelecaoServicePort service) {
         return new EmpacotarPedidoUseCaseImpl(service);
     }
+
 }

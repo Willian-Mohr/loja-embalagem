@@ -14,6 +14,14 @@ public class ResultadoEmpacotamento {
         this.observacao = observacao;
     }
 
+    public static ResultadoEmpacotamento comCaixa(String caixaId, List<String> produtos) {
+        return new ResultadoEmpacotamento(caixaId, produtos, null);
+    }
+
+    public static ResultadoEmpacotamento semCaixa(List<String> produtos, String observacao) {
+        return new ResultadoEmpacotamento(null, produtos, observacao);
+    }
+
     public String getCaixaId() {
         return caixaId;
     }
@@ -24,13 +32,5 @@ public class ResultadoEmpacotamento {
 
     public String getObservacao() {
         return observacao;
-    }
-
-    public static ResultadoEmpacotamento comCaixa(String caixaId, List<String> produtos) {
-        return new ResultadoEmpacotamento(caixaId, produtos, null);
-    }
-
-    public static ResultadoEmpacotamento semCaixa(List<String> produtos, String observacao) {
-        return new ResultadoEmpacotamento(null, produtos, observacao);
     }
 }

@@ -7,7 +7,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8080/realms/loja-embalagens
+          issuer-uri: http://keycloak:8080/realms/loja-embalagens
 
 logging:
   level:
@@ -24,7 +24,7 @@ springdoc:
     path: /swagger-ui.html
 
 swagger:
-  oauth2-token-url: http://localhost:8080/realms/loja-embalagens/protocol/openid-connect/token
+  oauth2-token-url: http://keycloak:8080/realms/loja-embalagens/protocol/openid-connect/token
 
 caixas:
   disponiveis:

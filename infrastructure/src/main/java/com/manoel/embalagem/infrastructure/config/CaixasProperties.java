@@ -18,6 +18,14 @@ public class CaixasProperties {
         this.disponiveis = disponiveis;
     }
 
+    @PostConstruct
+    public void init() {
+        System.out.println("Caixas carregadas:");
+        disponiveis.forEach(c ->
+                System.out.println(" - " + c.getId() + ": " + c.getDimensao().getAltura() + "x" +
+                        c.getDimensao().getLargura() + "x" + c.getDimensao().getComprimento()));
+    }
+
     public static class CaixaConfig {
         private String id;
         private DimensaoConfig dimensao;
@@ -67,13 +75,5 @@ public class CaixasProperties {
         public void setComprimento(int comprimento) {
             this.comprimento = comprimento;
         }
-    }
-
-    @PostConstruct
-    public void init() {
-        System.out.println("Caixas carregadas:");
-        disponiveis.forEach(c ->
-                System.out.println(" - " + c.getId() + ": " + c.getDimensao().getAltura() + "x" +
-                        c.getDimensao().getLargura() + "x" + c.getDimensao().getComprimento()));
     }
 }
