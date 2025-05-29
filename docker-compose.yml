@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.3
+    command: start-dev --import-realm
+    ports:
+      - "8080:8080"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_HOSTNAME: keycloak
+      KC_HOSTNAME_STRICT: false
+      KC_HOSTNAME_STRICT_HTTPS: false
+    volumes:
+      - ./keycloak:/opt/keycloak/data/import
+    networks:
+      - loja-net
+
+  loja-api:
+    image: loja-api # mesmo nome definido no build-image do pom.xml
+    depends_on:
+      - keycloak
+    ports:
+      - "8081:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 8080
+    networks:
+      - loja-net
+
+networks:
+  loja-net:
+    driver: bridge

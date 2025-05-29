@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: api-embalagem
+  jackson:
+    default-property-inclusion: non_null
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/loja-embalagens
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
+
+server:
+  port: 8081
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+swagger:
+  oauth2-token-url: http://localhost:8080/realms/loja-embalagens/protocol/openid-connect/token
+
+caixas:
+  disponiveis:
+    - id: "Caixa 1"
+      dimensao:
+        altura: 30
+        largura: 40
+        comprimento: 80
+    - id: "Caixa 2"
+      dimensao:
+        altura: 80
+        largura: 50
+        comprimento: 40
+    - id: "Caixa 3"
+      dimensao:
+        altura: 50
+        largura: 80
+        comprimento: 60
