@@ -11,10 +11,11 @@
     <description>Projeto Loja de Embalagens</description>
 
     <modules>
-        <module>api</module>
+        <module>core</module>
         <module>application</module>
-        <module>domain</module>
+        <module>usecase</module>
         <module>infrastructure</module>
+        <module>api</module>
     </modules>
 
     <properties>

@@ -1,11 +1,10 @@
 package com.manoel.embalagem.infrastructure.config;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-@Configuration
 @ConfigurationProperties(prefix = "caixas")
 public class CaixasProperties {
 
@@ -68,5 +67,13 @@ public class CaixasProperties {
         public void setComprimento(int comprimento) {
             this.comprimento = comprimento;
         }
+    }
+
+    @PostConstruct
+    public void init() {
+        System.out.println("Caixas carregadas:");
+        disponiveis.forEach(c ->
+                System.out.println(" - " + c.getId() + ": " + c.getDimensao().getAltura() + "x" +
+                        c.getDimensao().getLargura() + "x" + c.getDimensao().getComprimento()));
     }
 }

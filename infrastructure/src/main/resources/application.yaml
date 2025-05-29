@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: api-embalagem
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: 8080
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+caixas:
+  disponiveis:
+    - id: "Caixa 1"
+      dimensao:
+        altura: 30
+        largura: 40
+        comprimento: 80
+    - id: "Caixa 2"
+      dimensao:
+        altura: 80
+        largura: 50
+        comprimento: 40
+    - id: "Caixa 3"
+      dimensao:
+        altura: 50
+        largura: 80
+        comprimento: 60

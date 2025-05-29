@@ -1,10 +1,10 @@
 package com.manoel.embalagem.infrastructure.service;
 
-import com.manoel.embalagem.domain.model.Caixa;
-import com.manoel.embalagem.domain.model.Dimensao;
-import com.manoel.embalagem.domain.model.Pedido;
-import com.manoel.embalagem.domain.model.Produto;
-import com.manoel.embalagem.domain.port.CaixaSelecaoServicePort;
+import com.manoel.embalagem.core.domain.Caixa;
+import com.manoel.embalagem.core.domain.Dimensao;
+import com.manoel.embalagem.core.domain.Pedido;
+import com.manoel.embalagem.core.domain.Produto;
+import com.manoel.embalagem.core.port.CaixaSelecaoServicePort;
 import com.manoel.embalagem.infrastructure.config.CaixasProperties;
 
 import java.util.*;
@@ -15,6 +15,10 @@ public class DefaultCaixaSelecaoService implements CaixaSelecaoServicePort {
     private final List<Caixa> caixasDisponiveis;
 
     public DefaultCaixaSelecaoService(CaixasProperties config) {
+        if (config.getDisponiveis() == null) {
+            throw new IllegalStateException("Lista de caixas não carregada! Verifique caixas.yaml");
+        }
+
         this.caixasDisponiveis = config.getDisponiveis().stream()
                 .map(c -> new Caixa(
                         c.getId(),

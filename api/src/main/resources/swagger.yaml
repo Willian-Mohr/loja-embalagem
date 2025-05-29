@@ -1,0 +1,121 @@
+openapi: 3.0.1
+info:
+  title: Loja Embalagem API
+  description: API para empacotamento de pedidos
+  version: "1.0"
+servers:
+  - url: http://localhost:8080/api
+paths:
+  /empacotar:
+    post:
+      tags:
+        - empacotamento
+      summary: Empacota pedidos
+      operationId: empacotarPedidos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PedidoWrapperRequestDTO'
+      responses:
+        '200':
+          description: Empacotamento realizado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PedidoResponseWrapperDTO'
+
+components:
+  schemas:
+    DimensaoDTO:
+      type: object
+      required:
+        - altura
+        - largura
+        - comprimento
+      properties:
+        altura:
+          type: integer
+          format: int32
+        largura:
+          type: integer
+          format: int32
+        comprimento:
+          type: integer
+          format: int32
+
+    ProdutoRequestDTO:
+      type: object
+      required:
+        - produto_id
+        - dimensoes
+      properties:
+        produto_id:
+          type: string
+        dimensoes:
+          $ref: '#/components/schemas/DimensaoDTO'
+
+    PedidoRequestDTO:
+      type: object
+      required:
+        - pedido_id
+        - produtos
+      properties:
+        pedido_id:
+          type: integer
+          format: int32
+        produtos:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProdutoRequestDTO'
+
+    PedidoWrapperRequestDTO:
+      type: object
+      required:
+        - pedidos
+      properties:
+        pedidos:
+          type: array
+          items:
+            $ref: '#/components/schemas/PedidoRequestDTO'
+
+    CaixaResponseDTO:
+      type: object
+      required:
+        - caixa_id
+        - produtos
+        - observacao
+      properties:
+        caixa_id:
+          type: string
+        produtos:
+          type: array
+          items:
+            type: string
+        observacao:
+          type: string
+
+    PedidoResponseDTO:
+      type: object
+      required:
+        - pedido_id
+        - caixas
+      properties:
+        pedido_id:
+          type: integer
+          format: int32
+        caixas:
+          type: array
+          items:
+            $ref: '#/components/schemas/CaixaResponseDTO'
+
+    PedidoResponseWrapperDTO:
+      type: object
+      required:
+        - pedidos
+      properties:
+        pedidos:
+          type: array
+          items:
+            $ref: '#/components/schemas/PedidoResponseDTO'

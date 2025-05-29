@@ -16,7 +16,7 @@
     <dependencies>
         <dependency>
             <groupId>com.manoel</groupId>
-            <artifactId>domain</artifactId>
+            <artifactId>core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -24,18 +24,22 @@
             <artifactId>application</artifactId>
             <version>${project.version}</version>
         </dependency>
-
-        <!-- Spring Boot Core para Configurações -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <groupId>com.manoel</groupId>
+            <artifactId>usecase</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
-        <!-- Processador de anotações para permitir geração de metadata -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
+            <groupId>com.manoel</groupId>
+            <artifactId>api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.5.0</version>
         </dependency>
     </dependencies>
 
