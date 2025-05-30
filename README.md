@@ -51,23 +51,38 @@ Adicione a mesma linha ao arquivo `C:\Windows\System32\drivers\etc\hosts` com pr
 
 ## Build e Execução
 
-Para construir e empacotar o projeto, e gerar a imagem Docker da aplicação, execute:
+Você pode executar o projeto de duas formas:
+
+### 🔧 Gerando a imagem localmente
+
+Caso deseje construir a imagem Docker do projeto localmente, execute:
 
 ```sh
-mvn clean package -pl infrastructure -am -Pdocker
+mvn clean package -pl infrastructure -am -Pdocker -DskipTests
 ```
 
-Para subir o ambiente completo com Keycloak e a aplicação:
+Em seguida, suba o ambiente com:
 
 ```sh
-docker-compose up --build
+docker-compose up --build -d
 ```
 
-A API ficará disponível em: [http://localhost:8081](http://localhost:8081)
+A API estará disponível em: [http://localhost:8081](http://localhost:8081)
 
 Swagger UI: [http://localhost:8081/swagger-ui/index.html](http://localhost:8081/swagger-ui/index.html)
 
-Keycloak: [http://localhost:8080](http://localhost:8080)
+### ☁️ Utilizando a imagem publicada no Docker Hub
+
+Se preferir utilizar a imagem publicada, basta subir o ambiente sem build:
+
+```sh
+docker-compose -f docker-compose.prod.yml up --build -d
+```
+
+A API estará disponível em: [http://localhost:8082](http://localhost:8082)
+Swagger UI: [http://localhost:8082/swagger-ui/index.html](http://localhost:8082/swagger-ui/index.html)
+
+Keycloak (para ambos os ambientes): [http://localhost:8080](http://localhost:8080)
 
 ## Autenticação com Keycloak
 
